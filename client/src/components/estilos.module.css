@@ -1,0 +1,49 @@
+
+
+.header {
+    display: flex;
+
+    box-sizing: border-box;
+    list-style: none;
+    background-color: rgb(227, 234, 165);
+    height: 50px;   
+    width: 100%;
+    position: fixed;
+    margin: 0;
+    padding: 10px;
+
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.icon{
+    background-color: aliceblue;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+
+    text-align: center;
+    align-items: center;
+    
+}
+
+.icon h1{
+    font-size: 15px;
+    color: rgb(162, 140, 13);
+    margin-top: 15px;   
+    background-color: white;
+    border-radius: 10px;
+}
+
+.link{
+    padding-right: 10px;
+    text-decoration: none;
+    color: rgb(123, 106, 9);
+    background-color: rgb(227, 234, 165);
+}
+
+.nav{
+    font-weight: 600;
+  font-size: 15px;
+}

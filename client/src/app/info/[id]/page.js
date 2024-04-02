@@ -1,4 +1,5 @@
 "use client" 
+import Dato from "@/components/info";
 import { useParams } from "next/navigation";
 
 /*
@@ -15,9 +16,9 @@ export default function User() {
   const params = useParams()
 
   return (
-    <>
-      <h1> {params.id} </h1>
-    </>
+    <div>
+      <Dato/> 
+    </div>
   );
 }
 

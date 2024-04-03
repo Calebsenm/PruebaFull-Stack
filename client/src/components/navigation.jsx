@@ -12,7 +12,6 @@ function Navigation() {
             </div>
             <nav className={styles.nav}>
                 <Link  className={styles.link} href="/" > Inicio </Link>
-                <Link  className={styles.link}  href="/form" > Formulario </Link>
                 <Link  className={styles.link}  href="/info" > Informacion </Link>
 
             </nav>

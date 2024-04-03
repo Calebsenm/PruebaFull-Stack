@@ -52,14 +52,14 @@ Diseño del componente Dato de los ususarios
 
 
 
-.table{
-    
+.table {
+
     background-color: rgb(163, 161, 63);
     width: 100%;
-    font-size:25px;
-    margin-top: 10px;
+    font-size: 25px;
     height: 50px;
-color: rgb(108, 108, 8);
-
+    color: rgb(108, 108, 8);
+ 
 
 }
+

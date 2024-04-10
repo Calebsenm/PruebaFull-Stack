@@ -1,24 +1,30 @@
 
 import Dato from '@/components/userTable';
 
-function fechUsers() {
-  const urls = "http://localhost:5000/api/empresas"
-  const user =  fetch(urls).then(res => res.json()); 
+async function loadData() {
+  const res = await fetch("http://localhost:5000/api/empresas")
+  const data = await res.json()
 
-  console.log(urls)
-  return user
+  return data
 
 }
 
-export default function Info() {
-  const empresa = fechUsers();
-
+async function Info() {
+  const empresa = await loadData();
   return (
-    <>
-      <Dato empresa={empresa} />
- 
-    </>
+
+    <div>
+      {
+        empresa.map(empresa => (
+          <div>
+            <Dato  empresa={empresa} key={empresa.id } />
+          </div>
+        ))
+      }
+    </div>
 
   );
 }
 
+
+export default Info;

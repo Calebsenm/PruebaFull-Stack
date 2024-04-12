@@ -4,7 +4,6 @@ import Dato from '@/components/userTable';
 async function loadData() {
   const res = await fetch("http://localhost:5000/api/empresas")
   const data = await res.json()
-
   return data
 
 }

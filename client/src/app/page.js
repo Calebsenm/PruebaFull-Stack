@@ -31,7 +31,9 @@ export default function Formulario() {
             <input type="text" className={styles.inputs}></input>
           </div>
           <div>
-            <input type="submit" className={styles.inputsSub}></input>
+
+            <button className={styles.inputsSub}> Guardar </button>
+
           </div>
           <div>
             <button className={styles.inputsSub2}> <Link style={{ textDecoration: "none", color: "black " }} href="/info">Ver Informacion </Link></button>

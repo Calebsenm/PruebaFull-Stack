@@ -2,9 +2,11 @@
 import Dato from '@/components/userTable';
 
 async function loadData() {
+
   const res = await fetch("http://localhost:5000/api/empresas")
-  const data = await res.json()
-  return data
+  const emp = await res.json()
+
+  return emp
 
 }
 
@@ -14,9 +16,9 @@ async function Info() {
 
     <div>
       {
-        empresa.map(empresa => (
+        empresa.map(emp => (
           <div>
-            <Dato  empresa={empresa} key={empresa.id } />
+            <Dato  empresa={emp}  />
           </div>
         ))
       }
@@ -24,6 +26,5 @@ async function Info() {
 
   );
 }
-
 
 export default Info;

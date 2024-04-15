@@ -11,9 +11,17 @@ export default function Dato({ empresa }) {
     const [showModal, setShowModal] = useState(false);
 
     const deleteUsers = (id) => {
-        alert( id ) ;
+        const url = `http://localhost:5000/api/empresas/${id}`;
 
-    }
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    };
+
+
 
     return (
         <div className={styles.table}>
@@ -27,8 +35,8 @@ export default function Dato({ empresa }) {
 
             <div className={styles.botonDiv}>
                 <button onClick={() => deleteUsers(empresa.id)} style={{ backgroundColor: "green" }} className={styles.boton}> Borrar </button>
-                
-                
+
+
                 <button onClick={
                     () => setShowModal(true)
                 } style={{ backgroundColor: "blue" }} className={styles.boton}> Editar </button>
@@ -68,7 +76,7 @@ export default function Dato({ empresa }) {
                                         <button className={styles.inputsSub}> Guardar </button>
 
                                     </div>
-                                
+
                                 </form>
                             </div>
                             <footer>

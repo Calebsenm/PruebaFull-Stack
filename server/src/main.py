@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from psycopg2 import connect , extras
 from dotenv import load_dotenv
 from os import environ
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -32,6 +33,14 @@ def get_connection():
 
 
 app = Flask(__name__)
+CORS(app)
+
+# Rutas de al api 
+
+@app.route("/")
+def helloWorld():
+  return "Hello"
+
 
 # metodo post para guardar datos en la base de datos
 @app.post("/api/empresas")

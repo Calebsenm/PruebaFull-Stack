@@ -4,23 +4,27 @@ import React from "react";
 import styles from "@/components/estilos.module.css"
 import { useState } from "react";
 import Modal from "./Modal";
+import Formulario from "./Formulario";
 
 
 export default function Dato({ empresa }) {
 
     const [showModal, setShowModal] = useState(false);
 
-    const deleteUsers = (id) => {
+    const deleteUsers = async id => {
         const url = `http://localhost:5000/api/empresas/${id}`;
-
-        fetch(url, {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        const response = await fetch(url, {
+            method: "DELETE"
         });
-    };
 
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+            alert('User deleted successfully: ' + JSON.stringify(data));
+        }
+    };
 
 
     return (
@@ -34,54 +38,28 @@ export default function Dato({ empresa }) {
             </div>
 
             <div className={styles.botonDiv}>
-                <button onClick={() => deleteUsers(empresa.id)} style={{ backgroundColor: "green" }} className={styles.boton}> Borrar </button>
+                <button
+                    onClick={() => {
+                        deleteUsers(empresa.id);
+                        alert("Usuario borrado");
+                        window.location.reload();
+                    }}
+
+                    style={{ backgroundColor: "green" }}
+                    className={styles.boton}
+
+                > Borrar </button>
 
 
                 <button onClick={
                     () => setShowModal(true)
+
                 } style={{ backgroundColor: "blue" }} className={styles.boton}> Editar </button>
 
                 {
                     showModal &&
                     <Modal onClose={() => setShowModal(false)}>
-                        <main className={styles.main}>
-
-                            <div className={styles.description}>
-
-                                <h1>Formulario De Registro </h1>
-
-                                <form id="Formulario" >
-                                    <div >
-                                        <label > Nombre de la empresa </label>
-                                        <input type="text" className={styles.inputs}></input>
-                                    </div>
-                                    <div>
-                                        <label> Dirección </label>
-                                        <input type="text" className={styles.inputs}></input>
-                                    </div>
-                                    <div>
-                                        <label> NIT </label>
-                                        <input type="text" className={styles.inputs}></input>
-                                    </div>
-                                    <div>
-                                        <label>Teléfono </label>
-                                        <input type="text" className={styles.inputs}></input>
-                                    </div>
-                                    <div>
-                                        <label>Email </label>
-                                        <input type="text" className={styles.inputs}></input>
-                                    </div>
-                                    <div>
-
-                                        <button className={styles.inputsSub}> Guardar </button>
-
-                                    </div>
-
-                                </form>
-                            </div>
-                            <footer>
-                            </footer>
-                        </main>
+                       <Formulario/>
                     </Modal>
                 }
             </div>

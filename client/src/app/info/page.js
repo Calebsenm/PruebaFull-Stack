@@ -1,29 +1,34 @@
 
+"use client"
 import Dato from '@/components/userTable';
+import { useState, useEffect } from "react";
 
-async function loadData() {
 
-  const res = await fetch("http://localhost:5000/api/empresas")
-  const emp = await res.json()
 
-  return emp
+function Info() {
 
-}
+  const [empresas, setEmpresas] = useState([]);
+  
 
-async function Info() {
-  const empresa = await loadData();
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("http://localhost:5000/api/empresas");
+      const emp = await res.json();
+      setEmpresas(emp);
+    };
+
+    fetchData();
+    
+  }, []);
+
   return (
-
     <div>
-      {
-        empresa.map(emp => (
-          <div>
-            <Dato  empresa={emp} key={emp.id}  />
-          </div>
-        ))
-      }
+      {empresas.map(emp => (
+        <div key={emp.id}>
+          <Dato empresa={emp} />
+        </div>
+      ))}
     </div>
-
   );
 }
 

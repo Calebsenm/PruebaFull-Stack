@@ -18,7 +18,7 @@ async function Info() {
       {
         empresa.map(emp => (
           <div>
-            <Dato  empresa={emp}  />
+            <Dato  empresa={emp} key={emp.id}  />
           </div>
         ))
       }

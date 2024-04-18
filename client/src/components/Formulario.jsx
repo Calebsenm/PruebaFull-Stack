@@ -51,21 +51,53 @@ function Formulario({ id }) {
         setIsFormValid(Object.keys(errors).length === 0);
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
         if (isFormValid) {
             if (id == undefined) {
 
-                const response = await fetch(url, {
+                const Empresa = {
+                    nombre_empresa: nombre,
+                    direccion: direccion,
+                    nit: nit,
+                    telefono: telefono,
+                    correo: email
+                };
+
+                fetch(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(
-                        {
-                            nombre,
-                            direccion,
-                            nit,
-                            telefono,
-                            email
-                        })
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(Empresa)
+                })
+                .then(res =>{
+                    if(!res.ok){
+                        alert(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .catch()
+                 
+
+            } else {
+
+                const Empresa = {
+                    nombre_empresa: nombre,
+                    direccion: direccion,
+                    nit: nit,
+                    telefono: telefono,
+                    correo: email
+                };
+
+
+                const response = await fetch(`${url}/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(Empresa)
                 })
 
                 const data = await response.json();
@@ -76,9 +108,6 @@ function Formulario({ id }) {
                     alert('User Posted successfully: ' + JSON.stringify(data));
                 }
 
-            } else {
-
-                putData(Empresa, id);
             }
 
 

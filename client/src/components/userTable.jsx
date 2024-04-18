@@ -42,7 +42,7 @@ export default function Dato({ empresa }) {
                     onClick={() => {
                         deleteUsers(empresa.id);
                         alert("Usuario borrado");
-                        window.location.reload();
+                       
                     }}
 
                     style={{ backgroundColor: "green" }}

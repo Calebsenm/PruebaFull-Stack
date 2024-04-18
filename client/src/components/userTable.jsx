@@ -59,7 +59,7 @@ export default function Dato({ empresa }) {
                 {
                     showModal &&
                     <Modal onClose={() => setShowModal(false)}>
-                       <Formulario/>
+                       <Formulario id={empresa.id} />
                     </Modal>
                 }
             </div>

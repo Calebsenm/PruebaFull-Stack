@@ -49,7 +49,12 @@ function Formulario() {
 
     const handleSubmit = () => {
         if (isFormValid) {
+            
             console.log('Form submitted successfully!');
+
+            
+
+
         } else {
             console.log('Form has errors. Please correct them.');
         }

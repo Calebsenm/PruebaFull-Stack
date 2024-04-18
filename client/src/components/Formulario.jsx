@@ -4,7 +4,11 @@
 import styles from "@/components/estilos.module.css"
 import React, { useState, useEffect } from 'react';
 
-function Formulario() {
+// URL del Servidor del backend.
+const url = 'http://localhost:5000/api/empresas';
+
+
+function Formulario({ id }) {
 
     const [nombre, setNombre] = useState('');
     const [direccion, setDireccion] = useState('');
@@ -47,12 +51,35 @@ function Formulario() {
         setIsFormValid(Object.keys(errors).length === 0);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (isFormValid) {
-            
-            console.log('Form submitted successfully!');
+            if (id == undefined) {
 
-            
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(
+                        {
+                            nombre,
+                            direccion,
+                            nit,
+                            telefono,
+                            email
+                        })
+                })
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    alert(`HTTP error! status: ${response.status}`);
+                } else {
+                    alert('User Posted successfully: ' + JSON.stringify(data));
+                }
+
+            } else {
+
+                putData(Empresa, id);
+            }
 
 
         } else {
@@ -106,7 +133,6 @@ function Formulario() {
                         {errors.telefono && <p >{errors.telefono}</p>}
 
                     </div>
-                  
                     <div>
                         <input
                             className={styles.inputs}
@@ -118,10 +144,11 @@ function Formulario() {
 
                     </div>
                     <div>
-                        <button 
-                            className={styles.inputsSub} 
-                            disabled={!isFormValid} 
-                            onClick={handleSubmit} 
+
+                        <button
+                            className={styles.inputsSub}
+                            disabled={!isFormValid}
+                            onClick={handleSubmit}
 
                         > Guardar </button>
                     </div>

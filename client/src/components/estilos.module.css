@@ -58,7 +58,6 @@ Diseño del componente Dato de los ususarios
     margin-left: 25%;
     margin-right: 25%;
     border-radius: 5px;
-    border: 3px solid rgb(228, 228, 105);
     margin-top: 2px;
     min-width: 400px;
 
@@ -122,7 +121,7 @@ Ventana Modal
 }
 
 .modaloverlay {
-    position: absolute;
+    position:fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -143,6 +142,17 @@ Ventana Modal
     font-size: 25px;
 }
 
+.close{
+    color: red;
+    text-decoration: none;
+    background-color:  rgb(228, 228, 105);
+    
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size:30px;
+}
 
 /*Estilos dela ventana formulario dentro de modal*/
 
